@@ -99,6 +99,7 @@ jobs:
           - serverinfo
           - snmpd
           - spamassassin
+          - spyglass
           - ssl
           - stateofthemap-container
           - stateofthemap-wordpress

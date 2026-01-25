@@ -397,6 +397,9 @@ suites:
   - name: spamassassin
     run_list:
       - recipe[spamassassin::default]
+  - name: spyglass
+    run_list:
+      - recipe[spyglass::default]
   - name: ssl
     run_list:
       - recipe[ssl::default]

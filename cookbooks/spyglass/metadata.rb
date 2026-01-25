@@ -1,0 +1,17 @@
+name              "spyglass"
+maintainer        "OpenStreetMap Administrators"
+maintainer_email  "admins@openstreetmap.org"
+license           "Apache-2.0"
+description       "Installs and configures spyglass servers"
+
+version           "1.0.0"
+supports          "ubuntu"
+depends           "accounts"
+depends           "git"
+depends           "nginx"
+depends           "podman"
+depends           "postgresql"
+depends           "python"
+depends           "systemd"
+depends           "tools"
+
