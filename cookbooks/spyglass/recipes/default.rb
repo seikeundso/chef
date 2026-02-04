@@ -54,6 +54,15 @@ git "/srv/spyglass.openstreetmap.org" do
   group "spyglass"
 end
 
+template "/srv/spyglass.openstreetmap.org/web/config.js" do
+  source "config.erb"
+  owner  "spyglass"
+  group  "spyglass"
+  mode   "0644"
+  variables(url_prefix: node[:spyglass][:url_prefix])
+  subscribes :create, 'git[/srv/spyglass.openstreetmap.org]', :immediately
+end
+
 execute "/srv/spyglass.openstreetmap.org/server" do
   action :nothing
   command "/usr/lib/go-1.23/bin/go build -buildvcs=false"
