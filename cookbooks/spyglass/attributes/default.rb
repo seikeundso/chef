@@ -8,7 +8,7 @@ default[:spyglass][:replication][:enabled] = true
 default[:spyglass][:replication][:tileupdate] = true
 default[:spyglass][:replication][:threads] = [0.5 * node.cpu_cores, 2].max.ceil
 default[:spyglass][:themepark][:version] = "15dc14b1a045efc763c210ab959d6643f9d54384"
-default[:spyglass][:url_prefix] = 'http://test1.osm2pgsql.org/'
+default[:spyglass][:url_prefix] = 'http://test.osm2pgsql.org/'
 
 default[:postgresql][:versions] |= [node[:spyglass][:database][:cluster].split("/").first]
 default[:postgresql][:monitor_database] = "spyglass"
