@@ -66,6 +66,10 @@ server {
         rewrite ^/relation/([0-9]+)$ /#s=r$1 redirect;
     }
 
+    location /config.js {
+      alias /srv/local/config.js;
+    }
+
     location / {
         try_files $uri $uri/ /index.html =404;
     }
@@ -73,4 +77,3 @@ server {
     root /srv/spyglass.openstreetmap.org/web;
     index index.html;
 }
-

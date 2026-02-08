@@ -46,6 +46,12 @@ directory "/srv/spyglass.openstreetmap.org" do
   mode "755"
 end
 
+directory "/srv/local" do
+  user "spyglass"
+  group "spyglass"
+  mode "755"
+end
+
 git "/srv/spyglass.openstreetmap.org" do
   action :sync
   repository "https://codeberg.org/jot/osm-spyglass.git"
@@ -54,13 +60,12 @@ git "/srv/spyglass.openstreetmap.org" do
   group "spyglass"
 end
 
-template "/srv/spyglass.openstreetmap.org/web/config.js" do
+template "/srv/local/config.js" do
   source "config.erb"
   owner  "spyglass"
   group  "spyglass"
   mode   "0644"
   variables(url_prefix: node[:spyglass][:url_prefix])
-  subscribes :create, 'git[/srv/spyglass.openstreetmap.org]', :immediately
 end
 
 execute "/srv/spyglass.openstreetmap.org/server" do
@@ -174,7 +179,7 @@ systemd_service "spyglass" do
     "DATABASE_URL" =>
       "postgres://spyglass:#{db_passwords['spyglass']}@localhost:5432/spyglass?pool_max_conns=8"
   )
-  exec_start "/usr/local/bin/spyglass -host 0.0.0.0 -disable-timestamp"
+  exec_start "/usr/local/bin/spyglass server -disable-timestamp"
 end
 
 service "spyglass" do
@@ -216,4 +221,3 @@ package %w[
 
 # TODO: Prometheus not supported by spyglass binary
 #
-
